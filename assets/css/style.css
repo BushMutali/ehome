@@ -69,3 +69,11 @@
     padding: 0 1rem;
     border-radius: 4px;
 }
+
+#phone {
+    padding-left: 10px;
+}
+
+#phoneFeedback {
+    display: none;
+}
