@@ -1,7 +1,7 @@
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
     const spinner = document.getElementById('page-spinner');
     spinner.classList.remove('hidden');
-    setTimeout(function() {
+    setTimeout(function () {
         spinner.classList.add('hidden');
     }, 1000);
 
@@ -57,38 +57,65 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 
-    // email validation
-    const emailInput = document.getElementById('email');
-    const emailfeedback = document.getElementById('emailFeedback');
+    // confirm pass validation
+    const confirmPassInput = document.getElementById('confirm-password');
+    const PasswordInput = document.getElementById('password').value;
+    const confirmPassFeedback = document.getElementById('confirmPassFeedback')
 
-    emailInput.addEventListener('input', function () {
-        const emailValue = emailInput.value;
+    confirmPassInput.addEventListener('input', function () {
+        const value = passwordInput.value;
 
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (emailRegex.test(emailValue)) {
-            emailInput.setCustomValidity('');
-            emailInput.classList.remove("is-invalid")
-            emailfeedback.style.display = 'none';
+        if (value != PasswordInput) {
+            confirmPassInput.classList.add("is-invalid")
+            confirmPassFeedback.style.display = 'block';
         } else {
-            emailInput.classList.add("is-invalid")
-            emailInput.setCustomValidity('Invalid');
-            emailfeedback.style.display = 'block';
+            confirmPassInput.classList.remove("is-invalid")
+            confirmPassFeedback.style.display = 'none';
         }
+    })
+
+
+
+    // email validation
+    const emailInputs = document.querySelectorAll('.email-input');
+
+    emailInputs.forEach(function (emailInput) {
+        const emailfeedback = emailInput.nextElementSibling;
+
+        emailInput.addEventListener('input', function () {
+            const emailValue = emailInput.value;
+
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            // Validate email
+            if (emailRegex.test(emailValue)) {
+                emailInput.setCustomValidity('');
+                emailfeedback.style.display = 'none';
+                emailInput.classList.remove("is-invalid")
+            } else {
+                emailInput.setCustomValidity('Invalid');
+                emailfeedback.style.display = 'block';
+                emailInput.classList.add("is-invalid")
+            }
+        });
     });
 
-    // sub email validation 
-    const subEmail = document.getElementById('subEmail');
-    const subBtn = document.getElementById('subBtn')
+    const codeInput = document.getElementById('code');
+    const codefeedback = document.getElementById('codeFeedback');
 
-    subEmail.addEventListener('input', function () {
-        const subEmailValue = subEmail.value;
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (emailRegex.test(subEmailValue)) { 
-            subEmail.classList.remove('is-invalid');
-            subBtn.disabled = false
+    codeInput.addEventListener('input', function () {
+        const codeValue = codeInput.value;
+
+        // Regular expression to validate that input contains exactly 6 digits
+        const codeRegex = /^\d{6}$/;
+
+        // Validate code
+        if (codeRegex.test(codeValue)) {
+            codeInput.setCustomValidity('');
+            codefeedback.style.display = 'none';
         } else {
-            subEmail.classList.add('is-invalid')
-            subBtn.disabled = true
+            codeInput.setCustomValidity('Invalid');
+            codefeedback.style.display = 'block';
         }
     });
 });
