@@ -1,0 +1,97 @@
+
+
+.notis {
+    z-index: 2000;
+    position: absolute;
+    top: 25px;
+    right: 35px;
+    border-radius: 12px;
+    background: #fff;
+    padding: 20px 35px 20px 25px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    border-left: 6px solid #DC3545;
+    font-family: 'poppins', sans-serif;
+    overflow: hidden;
+    transform: translateX(calc(100% + 35px));
+    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.notis.active {
+    transform: translateX(0%);
+}
+
+.notis .notis-content {
+    display: flex;
+    align-items: center;
+}
+
+.notis-content .message {
+    display: flex;
+    flex-direction: column;
+    margin: 0 20px;
+}
+
+.notis-content .check {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 35px;
+    width: 35px;
+    background-color: #DC3545;
+    color: #fff;
+    font-size: 20px;
+    border-radius: 50%;
+}
+
+.message .text {
+    font-weight: 400;
+    font-size: 20px;
+    color: #666666;
+}
+
+.message .text.text-1 {
+    font-weight: 600;
+    color: #333;
+}
+
+.notis .close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    padding: 5px;
+    cursor: pointer;
+    opacity: 0.7;
+}
+
+.notis .close:hover {
+    opacity: 1;
+}
+
+.notis .progress-bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 3px;
+    width: 100%;
+    background: #ddd;
+}
+
+.notis .progress-bar::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    background-color: #DC3545;
+}
+
+.progress-bar.active::before {
+    animation: progress 5s linear forwards;
+}
+
+@keyframes progress {
+    100% {
+        right: 100%;
+    }
+}
